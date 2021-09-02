@@ -11,7 +11,9 @@ public class MergeSort {
 
 
     public static void main(String[] args){
-
+        int[] array = new int[]{1,6,9,10,2,4};
+        sort(array, 0,  array.length - 1);
+        System.out.println(Arrays.toString(array));
     }
 
 
@@ -24,38 +26,52 @@ public class MergeSort {
      *
      * @param array
      */
-    static int[] sort(int[] array){
-        if (null == array || array.length <= 1){
-            return array;
+    static void sort(int[] array, int p, int r){
+
+        if(p >=  r){
+            return ;
         }
 
-        if(array.length <= 1){
-            return array;
-        }
-        int middle  = (int) Math.floor(array.length/2);
+       int q = (p + r)/2;
 
-        int[] left = Arrays.copyOfRange(array, 0, middle);
-        int[] right = Arrays.copyOfRange(array, middle + 1, array.length);
 
-        return merge(sort(left), sort(right));
+        sort(array, p ,q);
+        sort(array, q + 1, r);
+
+        merge(array, p, q, r);
     }
 
-    static int[] merge(int[] left, int[] right){
-        int[] array = new int[left.length + right.length];
-        int i = 0;
-        while(left.length > 0 && right.length > 0){
-            if (left[0] < right[0]) {
-                array[i ++] = left[0];
-                left = Arrays.copyOfRange(left, 1, left.length);
-            }else {
-                array[i ++] = right[0];
-                left = Arrays.copyOfRange(right, 1, right.length);
+    static void merge(int[] array, int first,  int mid, int last){
+            int i = first;
+            int j = mid + 1;
+            int k = 0;
+            int[] temp = new int[last - first + 1];
+            while (i <= mid && j <= last){
+                //比较
+                if(array[i] <= array[j]){
+                    temp[k++] = array[i++];
+                }else {
+                    temp[k++] = array[j++];
+                }
             }
-        }
-        while (left.length > 0){
-          /*  array[]*/
-        }
-        return null;
+
+            while (i <= mid){
+                temp[k++] = array[i++];
+            }
+
+            while (j <= last){
+                temp[k++] = array[j++];
+            }
+
+            //回拷
+            for(int l = 0; l < k; l ++){
+                array[first + l] = temp[l];
+            }
+
+            System.out.println("--------" + Arrays.toString(array) +  first + mid + last);
     }
+
+
+
 }
 

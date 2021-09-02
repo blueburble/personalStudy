@@ -6,7 +6,7 @@ public class BubbleSort {
 
     public static void main(String[] args){
             int[] list = new int[]{3,4,6,1,9,80};
-            bubbleSort(list);
+            bubbleSort3(list);
             System.out.println(Arrays.toString(list));
 
     }
@@ -43,6 +43,49 @@ public class BubbleSort {
                 }
             }
             //判断是否有数据交换
+            if(!changeFlag){
+                break;
+            }
+        }
+    }
+
+
+    static void bubbleSort2(int[] list){
+        //长度判断
+        if(null == list || list.length <= 1){
+            return;
+        }
+        for(int i = 0; i < list.length;i++){
+            boolean changeFlag = false;
+            for(int j = 0 ; j <  list.length - i - 1; j ++){
+                if(list[j] > list[j + 1]){
+                    int temp = list[j + 1];
+                    list[j + 1] = list[j];
+                    list[j] = temp;
+                    changeFlag = true;
+                }
+            }
+
+            if(!changeFlag){
+                break;
+            }
+        }
+    }
+
+    static void bubbleSort3(int[] list){
+        if (null == list || list.length < 2){
+            return;
+        }
+        for(int i = 0; i < list.length; i ++){
+            boolean changeFlag = false;
+            for(int j = 0; j < list.length - 1 - i; j ++){
+                if(list[j] > list[j + 1]){
+                    int temp = list[j + 1];
+                    list[j + 1] = list[j];
+                    list[j] = temp;
+                    changeFlag = true;
+                }
+            }
             if(!changeFlag){
                 break;
             }

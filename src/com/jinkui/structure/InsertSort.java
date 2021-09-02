@@ -30,6 +30,7 @@ public class InsertSort {
         if(null == list || list.length <= 1){
             return;
         }
+        //默认第一个插入
         for(int i = 1; i < list.length; i++){
             int value = list[i];
             int j = i - 1;
@@ -43,4 +44,26 @@ public class InsertSort {
             list[j + 1] = value;
         }
     }
+
+
+    static void insertSort2(int[] list){
+        if(null == list || list.length < 2){
+            return;
+        }
+        for(int i = 1; i< list.length; i ++){
+            int value = list[i];
+            int j = i - 1;
+            //找到插入的位置
+            for(; j >= 0; j --){
+                if(list[j] > value){
+                    list[j + 1] = list[j];
+                }   else {
+                    break;
+                }
+            }
+            list[j + 1] = value;
+        }
+    }
+
+
 }
