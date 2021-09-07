@@ -29,6 +29,7 @@ public class ThreadTest16 {
 
     static class PrintString{
         //强制线程从公共内存当中读取变量的值
+
         private volatile Boolean flag = true;
 
         public PrintString changeFlag(boolean flag){
